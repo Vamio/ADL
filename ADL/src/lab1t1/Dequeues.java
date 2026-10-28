@@ -1,5 +1,5 @@
 package lab1t1;
 
-public class Dequeues implements DLList{
+public class Dequeues{
 
 }
