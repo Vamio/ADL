@@ -51,29 +51,22 @@ public class DLList<E> {
 	}
 	
 	public E removeBeginning() {
-		if(isEmpty()) {
-			System.out.println("List is empty.");
-			throw new NoSuchElementException("List is empty.");
-		}
-		
-		E element = head.element;
-		if (head.prev == null) {
-			head = head.next;
-			} else {
-			head.prev.next = head.next;
-	       }
-		
-		if (head.next == null) {
-			tail = head.prev;
-			} else {
-			head.next.prev = head.prev;
-			}
-		
-	       head.prev = null;
-	       head.next = null;
-	       size--;
-	       
-	       return element;
+		if (isEmpty()) {
+	        throw new NoSuchElementException("List is empty.");
+	    }
+	    E element = head.element;
+	    if (head == tail) {
+	        head = null;
+	        tail = null;
+	    } else {
+	        Node<E> oldHead = head;
+	        head = head.next;
+	        head.prev = null;
+	        oldHead.next = null;
+	    }
+	    size--;
+	    
+	    return element;
 	}
 	
 	public E removeEnd() {
@@ -140,9 +133,11 @@ public class DLList<E> {
 			throw new NoSuchElementException(":(");
 		}
 		Node<E> tempNode = head;
+		
 		for (int i = 0; i < index; i++) {
 			tempNode = tempNode.next;
 		}
+		
 		return tempNode.element;
 	}
 	
@@ -153,7 +148,7 @@ public class DLList<E> {
 	}
 	
     public void print() {
-    	Node<E> current = head;;
+    	Node<E> current = head;
     	while (current != null) {
     		System.out.print(current.element + " ");
     		current = current.next;
@@ -161,13 +156,12 @@ public class DLList<E> {
     	System.out.println();
     }
 
-	
 	private class Node<E>{
 		private E element = null;
 		private Node<E> next; 
 		private Node<E> prev;
 		
-		Node(E element){
+		private Node(E element){
 			this.element = element;
 		}
 	}
