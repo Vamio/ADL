@@ -1,61 +1,67 @@
 package lab1t1;
 
+import java.util.NoSuchElementException;
+
 public class Tests {
-	static boolean checkSort(Object[] items) {
-		// Check if the data set is all ints
-		if(!allInts(items)) {
-			System.out.print("Cannot check non-int arrays. ");
-			return false;
+	public static void testDLL() {
+		//Double linked list
+		System.out.println("Double linked list.");
+		DLList dllist = new DLList();
+		System.out.println("Testing empty list:");
+		System.out.println("Is empty: " + dllist.isEmpty());
+		System.out.println("The size is: " + dllist.size());
+				
+		System.out.println("Adding data to the list...");
+		for (Object o : MyData.DATA) {
+			dllist.insertBeginning(o);
 		}
-		// check if ints are in the rising sequence
-		for(int i = 0; i < items.length - 1; i++) {
-			if((int)items[i] > (int)items[i + 1]) {
-				return false;
-			}
+				
+		System.out.println();
+		System.out.println("Testing filled list:");
+		System.out.println("Is empty: " + dllist.isEmpty());
+		System.out.println("The size is: " + dllist.size());
+		System.out.print("printing array: ");
+		dllist.print();
+		System.out.println();
+		
+		System.out.println("Testing get and remove on empty DLL:");
+		dllist.clear();
+		
+		try {
+			dllist.getFirst();
+			dllist.getLast();
+			dllist.removeBeginning();
+			dllist.removeEnd();
+			
+		} catch(NoSuchElementException e) {
+			System.out.println("List is empty, skipping...");
 		}
 		
-		return true;
-	}
-	
-	static boolean allInts(Object[] items) {
-		for (Object o : items) {
-			if(o == null || o.getClass() != Integer.class) {
-				return false;
-			}
-		}
-		return true;
-	}
-	static int numOfElements(Object[] items) {
-		return items.length;
-	}
+		System.out.println("Is empty: " + dllist.isEmpty());
+		System.out.println("The size is: " + dllist.size());
+		System.out.println();
 		
-	static void testingInts() {
-		System.out.println("Testing if data sets are of type Integer:");
-		System.out.println("DATA is of type Integer: " + allInts(MyData.DATA));
-		System.out.println("DATA1 is of type Integer: " + allInts(MyData.DATA1));
-		System.out.println("DATA2 is of type Integer: " + allInts(MyData.DATA2));
+		System.out.println("Adding data to the list...");
+		for (Object o : MyData.DATA) {
+			dllist.insertBeginning(o);
+		}
+		System.out.println("First element is " + dllist.getFirst());
+		System.out.println("Last element is " + dllist.getLast());
 		System.out.println();
-	}
-	
-	static void testingSort() {
-		System.out.println("Testing if data sets are sorted starting from the smallest Integer:");
-		System.out.println("DATA is sorted: " + checkSort(MyData.DATA));
-		System.out.println("DATA1 is sorted: " + checkSort(MyData.DATA1));
-		System.out.println("DATA2 is sorted: " + checkSort(MyData.DATA2));
+		System.out.println("Removing first and last elements...");
+		System.out.println(dllist.removeBeginning());
+		System.out.println(dllist.removeEnd());
+		System.out.println("The size is: " + dllist.size());
+		System.out.println("First element is " + dllist.getFirst());
+		System.out.println("Last element is " + dllist.getLast());
+		dllist.print();
 		System.out.println();
-	}
-	
-	static void testingNumOfEls() {
-		System.out.println("Testing a number of elements:");
-		System.out.println("DATA has " + numOfElements(MyData.DATA)+ " elements");
-		System.out.println("DATA1 has " + numOfElements(MyData.DATA1)+ " elements");
-		System.out.println("DATA2 has " + numOfElements(MyData.DATA2)+ " elements");
 	}
 	
 	public static void main(String[] args) {
-		testingInts();
-		testingSort();
-		testingNumOfEls();
+		testDLL();
+		
+		
 	}
 
 }
