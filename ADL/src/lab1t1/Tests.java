@@ -63,6 +63,7 @@ public class Tests {
 		for (Integer o : DATA) {
 			dllist.insertBeginning(o);
 		}
+		
 		System.out.println("First element is " + dllist.getFirst());
 		System.out.println("Last element is " + dllist.getLast());
 		System.out.println();
@@ -71,6 +72,7 @@ public class Tests {
 		dllist.print();
 		System.out.println(dllist.removeEnd());
 		dllist.print();
+		
 		System.out.println("The size is: " + dllist.size());
 		System.out.println("First element is " + dllist.getFirst());
 		System.out.println("Last element is " + dllist.getLast());
@@ -85,6 +87,7 @@ public class Tests {
 		Dequeues<Integer> dequeue = new Dequeues<>();
 		System.out.println("Is empty: " + dequeue.isEmpty());
 		System.out.println("The size is: " + dequeue.size());
+		// trying the methods get... and remove... with the empty dequeue
 		try {
 			dequeue.getFirst();
 			System.out.println("peekFirst: no exception (error)");
@@ -109,25 +112,29 @@ public class Tests {
 		} catch (NoSuchElementException e) {
 			System.out.println("removeLast: exception (ok)");
 		}
+		
 		System.out.println("Adding data at the back (addLast)...");
 		for (int item : DATA) {
 			dequeue.insertLast(item);
 		}
+		
 		System.out.println("The size is: " + dequeue.size());
 		System.out.print("Dequeue: ");
 		dequeue.print();
 		System.out.println("Front is " + dequeue.getFirst() + " (expected " + DATA[0] + ")");
-		System.out.println("Back is " + dequeue.getLast() + " (expected "
-				+ DATA[DATA.length - 1] + ")");
+		System.out.println("Back is " + dequeue.getLast() + " (expected " + DATA[DATA.length - 1] + ")");
+		
 		System.out.print("addLast + removeFirst, queue order (FIFO): ");
 		while (!dequeue.isEmpty()) {
 			System.out.print(dequeue.removeFirst() + " ");
 		}
 		System.out.println();
+		
 		System.out.println("Adding data at the front (addFirst)...");
 		for (int item : DATA) {
 			dequeue.insertFirst(item);
 		}
+		
 		System.out.print("Dequeue: ");
 		dequeue.print();
 		System.out.print("addFirst + removeFirst, stack order (LIFO): ");
@@ -139,6 +146,7 @@ public class Tests {
 		dequeue.insertFirst(2);
 		dequeue.insertLast(3);
 		dequeue.insertFirst(1);
+		
 		System.out.print("Dequeue: ");
 		dequeue.print();
 		System.out.println("(expected [1, 2, 3])");
@@ -157,6 +165,7 @@ public class Tests {
 		Stack<Integer> stack = new Stack<>();
 		System.out.println("Is empty: " + stack.isEmpty());
 		System.out.println("The size is: " + stack.size());
+		// trying the methods top and pop with the empty stack
 		try {
 			stack.pop();
 			System.out.println("pop: no exception (error)");
@@ -169,13 +178,13 @@ public class Tests {
 		} catch (NoSuchElementException e) {
 			System.out.println("top: exception (ok)");
 		}
+		
 		System.out.println("Pushing data onto the stack...");
 		for (int item : DATA) {
 			stack.push(item);
 		}
 		System.out.println("The size is: " + stack.size());
-		System.out.println("Top element is " + stack.top() + " (expected "
-				+ DATA[DATA.length - 1] + ")");
+		System.out.println("Top element is " + stack.top() + " (expected " + DATA[DATA.length - 1] + ")");
 		stack.print();
 		System.out.print("Popping all elements: ");
 		while (!stack.isEmpty()) {
@@ -196,14 +205,17 @@ public class Tests {
 		
 		System.out.println("Stack before toDequeue:");
 		stack.print();
+		
 		Dequeues<Integer> dequeue = stack.toDequeue();
 		System.out.println("Stack size after toDequeue (unchanged): " + stack.size());
 		System.out.println("Dequeue size: " + dequeue.size());
 		System.out.println("Dequeue front is " + dequeue.getFirst() + " (expected top of stack " + stack.top() + ")");
+		
 		Stack<Integer> back = dequeue.toStack();
 		System.out.println("Dequeue size after toStack (unchanged): " + dequeue.size());
 		System.out.println("Stack after round trip stack -> dequeue -> stack:");
 		back.print();
+		
 		System.out.println("Empty stack -> dequeue is empty: " + new Stack<Integer>().toDequeue().isEmpty());
 		System.out.println("Empty dequeue -> stack is empty: " + new Dequeues<Integer>().toStack().isEmpty());
 	}
