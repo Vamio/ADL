@@ -15,7 +15,7 @@ public class Tests {
 				
 		System.out.println("Adding data to the list...");
 		for (Integer o : DATA) {
-			dllist.insertBeginning(o);
+			dllist.insertEnd(o); // Inserting at the end
 		}
 				
 		System.out.println();
@@ -61,7 +61,7 @@ public class Tests {
 		
 		System.out.println("Adding data to the list...");
 		for (Integer o : DATA) {
-			dllist.insertBeginning(o);
+			dllist.insertBeginning(o); // inserting at the beginning
 		}
 		
 		System.out.println("First element is " + dllist.getFirst());
@@ -115,7 +115,7 @@ public class Tests {
 		
 		System.out.println("Adding data at the back (addLast)...");
 		for (int item : DATA) {
-			dequeue.insertLast(item);
+			dequeue.insertLast(item); // Inserting at the back
 		}
 		
 		System.out.println("The size is: " + dequeue.size());
@@ -196,7 +196,7 @@ public class Tests {
 	}
 	
 	public static void testTransformations() {
-		System.out.println("=== Transformations ===");
+		System.out.println("==== Transformations ====");
 		Stack<Integer> stack = new Stack<>();
 		
 		for (int item : DATA) {
@@ -225,6 +225,18 @@ public class Tests {
 		testDequeue();
 		testStack();
 		testTransformations();
+		
+		MyArray<Integer> arr = new MyArray<>();
+
+		for (int item : DATA) {
+			arr.add(item);
+		}
+		System.out.print("Printing array: ");
+		arr.print();
+		Stack<Integer> stack = arr.toStack();
+		System.out.println("Printing stack: ");
+		stack.print();
+		
 	}
 
 }

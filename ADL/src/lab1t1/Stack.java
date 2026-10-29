@@ -75,4 +75,15 @@ public class Stack<E> {
         }
         System.out.println("-------");
     }
+	
+	public MyArray<E> toArray() {
+		MyArray<E> array = new MyArray<>();
+		Node<E> current = top;
+		while (current != null) {
+			array.add(current.value);
+			current = current.next;
+		}
+		return array;
+	}
+	
 }

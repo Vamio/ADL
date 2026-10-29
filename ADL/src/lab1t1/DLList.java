@@ -14,6 +14,15 @@ public class DLList<E> {
 		size = 0;
 	}
 	
+	private class Node<E>{
+		private E element = null;
+		private Node<E> next; 
+		private Node<E> prev;
+		
+		private Node(E element){
+			this.element = element;
+		}
+	}
 	public int size() {
 		return size;
 	}
@@ -154,15 +163,5 @@ public class DLList<E> {
     		current = current.next;
     	}
     	System.out.println();
-    }
-
-	private class Node<E>{
-		private E element = null;
-		private Node<E> next; 
-		private Node<E> prev;
-		
-		private Node(E element){
-			this.element = element;
-		}
-	}
+    }	
 }
